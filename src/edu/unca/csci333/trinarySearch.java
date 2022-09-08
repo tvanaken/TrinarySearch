@@ -17,7 +17,7 @@ public class trinarySearch {
 		System.out.println(trinarySearch(nums, 3, 0, nums.length-1));
 		System.out.println(trinarySearch(nums, 2, 0, nums.length-1));
 		System.out.println(trinarySearch(nums, 4, 0, nums.length-1));
-		System.out.println(trinarySearch(nums, 11, 0, nums.length-1));
+		System.out.println(trinarySearch(nums, 1, 0, nums.length-1));
 		System.out.println(trinarySearch(nums, 10, 0, nums.length-1));
 	}
 
@@ -35,9 +35,11 @@ public class trinarySearch {
 		if (end - start < 5) {
 			for (int i = start; i < end + 1; i++) {
 				if (arr[i] == term) {
+					
 					return i;
 				}
 			}
+			
 			return -1;
 		}
 		
@@ -45,19 +47,24 @@ public class trinarySearch {
 		int midr = end - (end - start) / 3;
 		
 		if (midl >= arr.length) {
+			
 			midl -= 1;
 		}
 		
 		if (arr[midl] == term) {
-			
-			while (arr[midl-1] == term) {
+			if (arr[midl-1] == term) {
 				
-				midl = midl-1;
+				return trinarySearch(arr, term, start, midl - 1);
 			}
 			
 			return midl;
 		}
+		
 		if (arr[midr] == term) {
+			if (arr[midr-1] == term) {
+				
+				return trinarySearch(arr, term, midl + 1, midr - 1);
+			}
 			
 			return midr;
 		}
